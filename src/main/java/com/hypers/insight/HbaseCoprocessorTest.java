@@ -13,6 +13,7 @@ import org.apache.hadoop.hbase.regionserver.wal.WALEdit;
 import org.apache.hadoop.hbase.coprocessor.ObserverContext;
 import org.apache.hadoop.hbase.coprocessor.BaseRegionObserver;
 import org.apache.hadoop.hbase.coprocessor.RegionCoprocessorEnvironment;
+import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
 
@@ -43,16 +44,30 @@ public class HbaseCoprocessorTest extends BaseRegionObserver{
     @Override
     public void prePut(ObserverContext<RegionCoprocessorEnvironment> e, Put put, WALEdit edit, Durability durability)
             throws IOException {
-        //获取put对象里面的rowkey'ergouzi'
+        //获取put对象里面的rowkey'zhangsan'
         byte[] row = put.getRow();
-        table = connection.getTable(TableName.valueOf("fans"));
+        table = connection.getTable(TableName.valueOf("insight:bonaFans"));
         //获取put对象里面的cell
         List<Cell> list = put.get("cf".getBytes(), "star".getBytes());
         Cell cell = list.get(0);
         //创建一个新的put对象
-        Put new_put = new Put(cell.getValueArray());
-        new_put.addColumn("cf".getBytes(), "fensi".getBytes(), row);
+//        put.get
+        Put new_put = new Put(subByte(cell.getValueArray(),cell.getValueOffset(),cell.getValueLength()));
+        new_put.addColumn(Bytes.toBytes("cf"), Bytes.toBytes("fensi"), row);
         table.put(new_put);
         connection.close();
+    }
+
+    /**
+     * 截取byte数组   不改变原数组
+     * @param b 原数组
+     * @param off 偏差值（索引）
+     * @param length 长度
+     * @return 截取后的数组
+     */
+    public static byte[] subByte(byte[] b,int off,int length){
+        byte[] b1 = new byte[length];
+        System.arraycopy(b, off, b1, 0, length);
+        return b1;
     }
 }
