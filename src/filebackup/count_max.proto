@@ -1,0 +1,19 @@
+syntax = "proto2";
+option java_package = "com.hypers.insight.hbaseendpoint";
+option java_outer_classname = "maxProtocol";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+message maxRequest {
+    required string family = 1;
+    required string column = 2;
+}
+message maxResponse {
+    required double max = 1 [default = 0];
+   
+}
+service maxService {
+  rpc getmax(maxRequest)
+    returns (maxResponse);
+}

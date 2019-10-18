@@ -17,6 +17,9 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
 
+/***
+ * 实现 触发插入事件
+ */
 public class HbaseCoprocessorTest extends BaseRegionObserver{
 
     static Connection connection;

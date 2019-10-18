@@ -40,8 +40,26 @@ public class HbaseTest {
 
     }
     public static void main(String[] args) throws Exception {
+//        createTable("insight:bona_endpoint", "info");
+        addRowData("insight:bona_endpoint","001","info","sales","12.3");
+        addRowData("insight:bona_endpoint","002","info","sales","24.5");
+        addRowData("insight:bona_endpoint","003","info","sales","10.5");
+        addRowData("insight:bona_endpoint","004","info","sales","11.5");
+        addRowData("insight:bona_endpoint","005","info","sales","10.5");
+        addRowData("insight:bona_endpoint","001","info","age","22");
+        addRowData("insight:bona_endpoint","002","info","age","33");
+        addRowData("insight:bona_endpoint","003","info","age","26");
+        addRowData("insight:bona_endpoint","004","info","age","28");
+        addRowData("insight:bona_endpoint","005","info","age","56");
+        getAllRows("insight:bona_endpoint");
+
+//        createTable("insight:bonaGuanzhu", "cf");
+//        createTable("insight:bonaFans", "cf");
+//        addRowData("insight:bonaGuanzhu","zhangsan","cf","star","gulinazha");
+//        getAllRows("insight:bonaFans");
+//        truncateTable("insight:bonaGuanzhu");
+
 //        createTable("insight:bona", "info1","info2");
-//        addRowData("insight:bona","1001","info1","name","zhangsan");
 //        addRowData("insight:bona","1002","info1","name","lisi");
 //        addRowData("insight:bona","1003","info1","name","wangwu");
 //        addRowData("insight:bona","1001","info2","course","english");
@@ -50,12 +68,12 @@ public class HbaseTest {
 //        addRowData("insight:bona","1002","info2","hobby","pingpang");
 //        addRowData("insight:bona","1003","info2","course","history");
 //        addRowData("insight:bona","1003","info2","hobby","badmiton");
-        getAllRows("insight:bona");
+//        getAllRows("insight:bona");
 //        getRow("insight:bona","1001");
 //        getRowQualifier("insight:bona","1001","info1","name");//获取单元格数据
 //        deleteMultiRow("insight:bona","1001","1002","1003");
 //        truncateTable("insight:bona");
-//        dropTable("insight:bona");
+//        dropTable("insight:bonaFans");
     }
 
     /***
